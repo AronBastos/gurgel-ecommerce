@@ -1,0 +1,61 @@
+<section class="hero">
+  <div class="hero-media" role="img" aria-label="Gurgel BR-800 vermelho, 1991"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Engenharia brasileira · desde 1969</span>
+    <h1>Os clássicos da Gurgel</h1>
+    <p>Do compacto <strong>BR-800</strong> em fibra de vidro ao pioneiro elétrico <strong>Itaipu</strong> —
+      a coleção que a indústria nacional ousou construir.</p>
+  </div>
+</section>
+
+@if (loading()) {
+  <div class="grid" aria-hidden="true">
+    @for (s of [1,2,3,4,5,6]; track s) {
+      <article class="card skeleton">
+        <div class="thumb"></div>
+        <div class="body">
+          <span class="sk sk-line lg"></span>
+          <span class="sk sk-line"></span>
+          <span class="sk sk-line sm"></span>
+        </div>
+      </article>
+    }
+  </div>
+} @else if (error()) {
+  <p class="state error">{{ error() }}</p>
+} @else {
+  <div class="grid">
+    @for (car of cars(); track car.id; let i = $index) {
+      <article class="card" [style.animation-delay.ms]="i * 55">
+        <div class="thumb">
+          <img [src]="car.imageUrl" [alt]="car.model" loading="lazy" (error)="onImgError($event)" />
+          <span class="cat">{{ categoryLabel(car.category) }}</span>
+        </div>
+        <div class="body">
+          <h3>{{ car.model }} <span class="year">{{ car.year }}</span></h3>
+          <p class="fact">{{ car.historicalFact }}</p>
+          <dl class="specs">
+            <div><dt>Motor</dt><dd>{{ car.engineCapacity || '—' }}</dd></div>
+            <div><dt>Tração</dt><dd>{{ car.driveType || '—' }}</dd></div>
+            <div><dt>Produção</dt><dd>{{ car.productionPeriod || '—' }}</dd></div>
+          </dl>
+        </div>
+        <div class="foot">
+          <div>
+            <strong class="price">{{ car.price | currency:'BRL':'symbol':'1.0-0' }}</strong>
+            <span class="stock" [class.low]="car.stock < 3">
+              {{ car.stock > 0 ? car.stock + ' na garagem' : 'Esgotado' }}
+            </span>
+          </div>
+          <button
+            class="btn btn-primary"
+            [disabled]="car.stock === 0"
+            (click)="addToCart(car)">
+            {{ addedId() === car.id ? '✓ Na garagem' : 'Adicionar' }}
+          </button>
+        </div>
+      </article>
+    }
+  </div>
+}

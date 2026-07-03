@@ -1,0 +1,45 @@
+<h1 class="page-title">Meus pedidos</h1>
+
+@if (loading()) {
+  <p class="state">Carregando pedidos…</p>
+} @else if (error()) {
+  <p class="state error">{{ error() }}</p>
+} @else if (orders().length === 0) {
+  <div class="empty">
+    <span class="icon">📦</span>
+    <p>Nenhum pedido ainda.</p>
+    <a class="btn btn-primary" routerLink="/">Ir ao catálogo</a>
+  </div>
+} @else {
+  <div class="list">
+    @for (order of orders(); track order.id) {
+      <article class="order">
+        <header>
+          <div>
+            <strong>Pedido #{{ order.id }}</strong>
+            <span class="muted">· {{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <span class="status" [attr.data-status]="order.status">{{ statusLabel(order.status) }}</span>
+        </header>
+
+        <p class="customer muted">{{ order.customerName }} — {{ order.customerEmail }}</p>
+
+        <ul class="lines">
+          @for (item of order.items; track item.carId) {
+            <li>
+              <span>{{ item.quantity }}× {{ item.carModel }}</span>
+              <span>{{ item.subtotal | currency:'BRL':'symbol':'1.0-0' }}</span>
+            </li>
+          }
+        </ul>
+
+        <footer>
+          <strong class="total">{{ order.totalAmount | currency:'BRL':'symbol':'1.0-0' }}</strong>
+          @if (order.status !== 'CANCELLED' && order.status !== 'DELIVERED') {
+            <button class="btn btn-danger" (click)="cancel(order)">Cancelar pedido</button>
+          }
+        </footer>
+      </article>
+    }
+  </div>
+}

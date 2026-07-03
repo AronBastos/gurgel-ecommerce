@@ -1,0 +1,115 @@
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.state.error { color: var(--c-danger); }
+
+.empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.empty .icon { font-size: 3rem; opacity: 0.5; }
+.empty p { font-size: 1.1rem; color: var(--c-ink-soft); margin: 0; }
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.order {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--c-line);
+  transition: box-shadow 0.15s;
+}
+
+.order:hover { box-shadow: var(--shadow-md); }
+
+.order header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.order header strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--c-surface-2);
+  color: var(--c-ink-soft);
+  white-space: nowrap;
+}
+
+.status[data-status='PENDING'] { background: #fff4d6; color: #a6790a; }
+.status[data-status='PAID']    { background: #dcefe0; color: #2e7d32; }
+.status[data-status='SHIPPED'] { background: #e0e7ff; color: #4338ca; }
+.status[data-status='DELIVERED'] { background: #dbeafe; color: #1d4ed8; }
+.status[data-status='CANCELLED'] { background: #fde2e2; color: #c0392b; }
+
+/* barra lateral colorida por status */
+.order:has(.status[data-status='PAID'])      { border-left-color: var(--c-ok); }
+.order:has(.status[data-status='PENDING'])   { border-left-color: var(--c-warn); }
+.order:has(.status[data-status='CANCELLED']) { border-left-color: var(--c-danger); }
+
+.customer {
+  margin: 0.5rem 0 0.9rem;
+  font-size: 0.85rem;
+}
+
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--c-line);
+}
+
+.lines li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.45rem 0;
+  font-size: 0.9rem;
+  color: var(--c-ink);
+}
+
+.lines li span:last-child { font-variant-numeric: tabular-nums; }
+
+.order footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--c-line);
+  margin-top: 0.5rem;
+  padding-top: 0.9rem;
+}
+
+.total {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
