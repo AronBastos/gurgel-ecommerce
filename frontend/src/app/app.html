@@ -1,0 +1,26 @@
+<header class="topbar">
+  <a class="brand" routerLink="/">
+    <span class="brand-mark">GURGEL</span>
+    <span class="brand-sub">Motores · Clássicos Brasileiros</span>
+  </a>
+
+  <nav class="nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catálogo</a>
+    <a routerLink="/orders" routerLinkActive="active">Pedidos</a>
+    <a class="cart-link" routerLink="/cart" routerLinkActive="active">
+      🛒 Carrinho
+      @if (cart.itemCount() > 0) {
+        <span class="badge">{{ cart.itemCount() }}</span>
+      }
+    </a>
+  </nav>
+</header>
+
+<main class="content">
+  <router-outlet />
+</main>
+
+<footer class="footer">
+  <p>Gurgel Motores — engenharia brasileira, de 1969 a 1996 · projeto de portfólio (Spring Boot + Angular)</p>
+  <p class="credit">Fotos históricas: Wikimedia Commons (licenças Creative Commons) · imagens meramente ilustrativas</p>
+</footer>

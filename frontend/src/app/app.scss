@@ -1,0 +1,112 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 70px;
+  background: var(--c-dark);
+  color: var(--c-on-dark);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+  /* faixa fina cor-destaque na base (referência industrial/modernista) */
+  border-bottom: 3px solid var(--c-accent);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--c-on-dark);
+  line-height: 1.05;
+}
+
+.brand-mark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 4px;
+  font-size: 1.45rem;
+  color: var(--c-gold);
+}
+
+.brand-sub {
+  font-size: 0.68rem;
+  color: var(--c-on-dark-soft);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+}
+
+.nav a {
+  color: var(--c-on-dark-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav a:hover { color: #fff; }
+
+.nav a.active {
+  color: var(--c-gold);
+  border-bottom-color: var(--c-accent);
+}
+
+.cart-link { position: relative; }
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -14px;
+  background: var(--c-accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-bottom: none !important;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  box-sizing: border-box;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.6rem 1.5rem;
+  color: var(--c-on-dark-soft);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  background: var(--c-dark);
+  border-top: 3px solid var(--c-accent);
+}
+
+.footer .credit {
+  color: var(--c-muted);
+  font-size: 0.72rem;
+}
+
+@media (max-width: 560px) {
+  .topbar { padding: 0 1.1rem; }
+  .nav { gap: 1rem; }
+  .brand-sub { display: none; }
+}
