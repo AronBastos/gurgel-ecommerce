@@ -1,0 +1,134 @@
+/* ============================================================
+   Design tokens — Gurgel
+   Conceito: modernismo brasileiro (Niemeyer/Athos Bulcão),
+   paleta terrosa + tropical em vez do verde-amarelo clichê.
+   ============================================================ */
+:root {
+  /* Superfícies */
+  --c-bg: #f7f3ec;           /* off-white quente (papel) */
+  --c-surface: #ffffff;
+  --c-surface-2: #fbf8f2;
+  --c-dark: #14261f;         /* verde-mata (header/footer) */
+  --c-dark-2: #1c3329;
+
+  /* Tinta / texto */
+  --c-ink: #1e2620;
+  --c-ink-soft: #55605a;
+  --c-muted: #8a938c;
+  --c-on-dark: #f4efe4;
+  --c-on-dark-soft: #a9b3a8;
+
+  /* Marca / destaques */
+  --c-accent: #e8552d;       /* laranja-tijolo (CTA / energia) */
+  --c-accent-hi: #ff6a40;
+  --c-gold: #f2b705;         /* ocre (wordmark) */
+  --c-gold-hi: #ffcb2e;
+
+  /* Estado */
+  --c-ok: #2e7d32;
+  --c-warn: #d97706;
+  --c-danger: #d33;
+
+  /* Linhas / sombras */
+  --c-line: #e7e0d2;
+  --shadow-sm: 0 2px 10px rgba(20, 38, 31, 0.07);
+  --shadow-md: 0 14px 30px rgba(20, 38, 31, 0.14);
+  --shadow-accent: 0 14px 30px rgba(232, 85, 45, 0.22);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #10190f;
+    --c-surface: #17241c;
+    --c-surface-2: #142019;
+    --c-dark: #0d1712;
+    --c-dark-2: #16241c;
+    --c-ink: #ecf0e8;
+    --c-ink-soft: #b3bdb2;
+    --c-muted: #8a948a;
+    --c-line: #263329;
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 14px 30px rgba(0, 0, 0, 0.45);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a { color: inherit; }
+
+/* Foco acessível (AA) */
+:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Botões utilitários */
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.62rem 1.15rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.06s;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--c-accent);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(232, 85, 45, 0.28);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--c-accent-hi);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink);
+}
+
+.btn-ghost:hover:not(:disabled) { background: var(--c-surface-2); }
+
+.btn-danger {
+  background: transparent;
+  color: var(--c-danger);
+  border: 1px solid #eab5b5;
+}
+
+.btn-danger:hover:not(:disabled) { background: #fdecec; }
+
+.muted { color: var(--c-muted); }

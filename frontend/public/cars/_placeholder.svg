@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#e9ebef"/>
+  <g fill="#b7bcc4">
+    <path d="M300 470 l70 -110 a40 40 0 0 1 33 -18 h394 a40 40 0 0 1 33 18 l70 110 h60 a30 30 0 0 1 30 30 v70 a20 20 0 0 1 -20 20 h-40 a70 70 0 0 0 -140 0 h-220 a70 70 0 0 0 -140 0 h-40 a20 20 0 0 1 -20 -20 v-70 a30 30 0 0 1 30 -30 z"/>
+    <circle cx="440" cy="590" r="46" fill="#9aa0a6"/>
+    <circle cx="760" cy="590" r="46" fill="#9aa0a6"/>
+  </g>
+  <text x="600" y="300" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="800"
+        fill="#c3c8d0" text-anchor="middle" letter-spacing="6">GURGEL</text>
+  <text x="600" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="30"
+        fill="#c3c8d0" text-anchor="middle" letter-spacing="2">imagem em breve</text>
+</svg>
