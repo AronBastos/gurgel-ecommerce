@@ -1,0 +1,10 @@
+target/
+logs/
+*.log
+.git/
+.idea/
+.vscode/
+.mvn/wrapper/maven-wrapper.jar
+frontend/
+docs/
+*.md

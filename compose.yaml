@@ -1,0 +1,46 @@
+# Stack completa: banco + API + frontend.
+#   docker compose up --build            → sobe tudo; app em http://localhost
+#   docker compose up -d postgres        → só o banco (para dev com mvnw + ng serve)
+#
+# Variáveis lidas de .env (ver .env.example). Defaults abaixo funcionam sem .env.
+services:
+  postgres:
+    image: 'postgres:16'
+    container_name: gurgel-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-gurgel_db}
+      POSTGRES_USER: ${POSTGRES_USER:-gurgel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gurgel}
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'gurgel_pgdata:/var/lib/postgresql/data'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-gurgel} -d ${POSTGRES_DB:-gurgel_db}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    container_name: gurgel-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-gurgel_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-gurgel}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-gurgel}
+    ports:
+      - '8080:8080'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: gurgel-frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+
+volumes:
+  gurgel_pgdata:
